@@ -1,0 +1,27 @@
+{
+  "name": "fastify-api",
+  "version": "1.0.0",
+  "description": "A blazing fast REST APIs with Node.js, MongoDB, Fastify and Swagger.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alpliar/fastify-api.git"
+  },
+  "author": "alpliar",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/alpliar/fastify-api/issues"
+  },
+  "homepage": "https://github.com/alpliar/fastify-api#readme",
+  "dependencies": {
+    "@hapi/boom": "^9.1.0",
+    "fastify": "^3.7.0",
+    "fastify-swagger": "^3.4.0",
+    "mongoose": "^5.10.9",
+    "nodemon": "^2.0.6"
+  }
+}
