@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon ./src/index.js",
+    "seed": "node ./src/helpers/seed.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,5 +24,8 @@
     "fastify-swagger": "^3.4.0",
     "mongoose": "^5.10.9",
     "nodemon": "^2.0.6"
+  },
+  "devDependencies": {
+    "faker": "^5.1.0"
   }
 }
