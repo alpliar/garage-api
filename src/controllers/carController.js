@@ -16,6 +16,7 @@ exports.getCars = async () => {
 
 // Get single car by ID
 exports.getSingleCar = async req => {
+  console.log(req.params === undefined ? req.id : req.params.id)
   try {
     const id = req.params === undefined ? req.id : req.params.id
     const car = await Car.findById(id)
@@ -28,7 +29,8 @@ exports.getSingleCar = async req => {
 // Add a new car
 exports.addCar = async req => {
   try {
-    const car = new Car({...req.body})
+    const carData = req.params === undefined ? req : {...req.body}
+    const car = new Car(carData)
     const newCar = await car.save()
     return newCar
   } catch (err) {
