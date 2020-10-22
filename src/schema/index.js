@@ -5,6 +5,7 @@ const graphql = require('graphql')
 const {
 	GraphQLSchema,
 	GraphQLObjectType,
+	GraphQLBoolean,
 	GraphQLString,
 	GraphQLInt,
 	GraphQLID,
@@ -38,6 +39,18 @@ const carType = new GraphQLObjectType({
 			async resolve(parent, args) {
 				return await serviceController.getCarsServices({ id: parent._id })
 			}
+		}
+	})
+})
+
+const carsPageType = new GraphQLObjectType({
+	name: 'CarsPage',
+	fields: () => ({
+		cars: {
+			type: new GraphQLList(carType)
+		},
+		hasMore: {
+			type: GraphQLBoolean
 		}
 	})
 })
@@ -89,6 +102,17 @@ const RootQuery = new GraphQLObjectType({
 			type: new GraphQLList(carType),
 			async resolve(parent, args) {
 				return await carController.getCars()
+			}
+		},
+		carsPage: {
+			type: carsPageType,
+			args: {
+					page: { type: GraphQLInt }, 
+					size: { type: GraphQLInt}
+				},
+			async resolve(parent, args) {
+				const carsPage = await carController.getCarsPage(args.page, args.size)
+				return carsPage
 			}
 		},
 		owner: {
