@@ -1,6 +1,11 @@
 // Import server
 const fastify = require('./server.js')
+
+fastify.register(require('fastify-cors'), { 
+    "Access-Control-Allow-Origin": "*"
+})
   
+
 // Import external dependancies
 const gql = require('fastify-gql')
 

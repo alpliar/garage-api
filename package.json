@@ -22,6 +22,7 @@
   "dependencies": {
     "@hapi/boom": "^9.1.0",
     "fastify": "^3.7.0",
+    "fastify-cors": "^4.1.0",
     "fastify-gql": "^5.8.2",
     "fastify-swagger": "^3.4.0",
     "graphql": "^15.3.0",
