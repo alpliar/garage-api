@@ -71,6 +71,18 @@ const ownerType = new GraphQLObjectType({
 	})
 })
 
+const ownersPageType = new graphql.GraphQLObjectType({
+	name: 'OwnersPage',
+	fields: () => ({
+		owners: {
+			type: new GraphQLList(ownerType)
+		},
+		hasMore: {
+			type: GraphQLBoolean
+		}
+	})
+})
+
 const serviceType = new GraphQLObjectType({
 	name: 'Service',
 	fields: () => ({
@@ -113,6 +125,23 @@ const RootQuery = new GraphQLObjectType({
 			async resolve(parent, args) {
 				const carsPage = await carController.getCarsPage(args.page, args.pageSize)
 				return carsPage
+			}
+		},
+		owners: {
+			type: new GraphQLList(ownerType),
+			async resolve(parent, args) {
+				return await ownerController.getOwners()
+			}
+		},
+		ownersPage: {
+			type: ownersPageType,
+			args: {
+					page: { type: GraphQLInt }, 
+					pageSize: { type: GraphQLInt}
+				},
+			async resolve(parent, args) {
+				const ownersPage = await ownerController.getOwnersPage(args.page, args.pageSize)
+				return ownersPage
 			}
 		},
 		owner: {

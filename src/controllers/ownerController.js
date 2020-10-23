@@ -6,10 +6,26 @@ const Owner = require('../models/Owner')
 const Car = require('../models/Car')
 
 // Get all owners
-exports.getOwner = async () => {
+exports.getOwners = async () => {
 	try {
 		const owners = await Owner.find()
 		return owners
+	} catch (err) {
+		throw boom.boomify(err)
+	}
+}
+
+exports.getOwnersPage = async (page, pageSize) => {
+	try {
+		const skip = page * pageSize
+		const owners = await Owner.find().skip(skip).limit(pageSize)
+		const countOwners = await Owner.find().countDocuments()
+		const hasMore = countOwners > (page+1) * pageSize
+
+		return {
+			owners: owners,
+			hasMore: hasMore
+		}
 	} catch (err) {
 		throw boom.boomify(err)
 	}
