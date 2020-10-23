@@ -2,6 +2,11 @@
 const faker = require('faker')
 const boom = require('@hapi/boom')
 
+// Number of data to generate
+const numberOfOwners = 50
+const numberOfCars = 1000
+const numberOfServices = 5000
+
 // Import internal dependancies
 const fastify = require('../server.js')
 
@@ -24,8 +29,32 @@ const cars = [
 		models: ['A1', 'A3', 'A4', 'A5']
 	},
 	{
+		name: 'Honda',
+		models: ['Civic', 'NSX', 'Jazz', 'CR-V']
+	},
+	{
+		name: 'Land Rover',
+		models: ['Range Rover']
+	},
+	{
+		name: 'Suzuki',
+		models: ['Swift', 'Ignis', 'Vitara']
+	},
+	{
+		name: 'Wolkswagen',
+		models: ['Golf IV', 'Polo V', 'Arteon', 'Up!', 'Touareg', 'California 6.1']
+	},
+	{
 		name: 'Ford',
 		models: ['Fiesta', 'Focus', 'Fusion', 'Mustang']
+	},
+	{
+		name: 'Renault',
+		models: ['Mégane', 'Clio', 'Captur', 'Scénic', 'Twingo', '5', '9', 'Fregate']
+	},
+	{
+		name: 'Citroën',
+		models: ['C1', 'Saxo', '2CV', 'GS', 'Traction Avant', 'DS', 'C-Zero']
 	}
 ]
 const serviceGarages = ['A++ Auto Services', "Gary's Garage", 'Super Service', 'iGarage', 'Best Service']
@@ -40,11 +69,11 @@ const generateOwnerData = () => {
 	let ownerData = []
 	let i = 0
 
-	while (i < 50) {
+	while (i < numberOfOwners) {
 		const firstName = faker.fake('{{name.firstName}}')
 		const lastName = faker.fake('{{name.lastName}}')
 		const email = faker.fake(`${firstName.toLowerCase()}.${lastName.toLowerCase()}@gmail.com`)
-
+		
 		const owner = {
 			firstName,
 			lastName,
@@ -62,7 +91,7 @@ const generateCarData = ownersIds => {
 	let carData = []
 	let i = 0
 
-	while (i < 1000) {
+	while (i < numberOfCars) {
 		const owner_id = faker.random.arrayElement(ownersIds)
 		const carObject = faker.random.arrayElement(cars)
 		const title = faker.random.arrayElement(carObject.models)
@@ -88,7 +117,7 @@ const generateServiceData = carsIds => {
 	let serviceData = []
 	let i = 0
 
-	while (i < 5000) {
+	while (i < numberOfServices) {
 		const car_id = faker.random.arrayElement(carsIds)
 		const name = faker.random.arrayElement(serviceGarages)
 		const date = faker.fake('{{date.past}}')
