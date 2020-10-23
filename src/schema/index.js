@@ -93,7 +93,7 @@ const RootQuery = new GraphQLObjectType({
 	fields: {
 		car: {
 			type: carType,
-			args: { id: { type: GraphQLID } },
+			args: { id: { type: GraphQLString } },
 			async resolve(parent, args) {
 				return await carController.getSingleCar(args)
 			}
@@ -117,14 +117,14 @@ const RootQuery = new GraphQLObjectType({
 		},
 		owner: {
 			type: ownerType,
-			args: { id: { type: GraphQLID } },
+			args: { id: { type: GraphQLString } },
 			async resolve(parent, args) {
 				return await ownerController.getSingleOwner(args)
 			}
 		},
 		service: {
 			type: serviceType,
-			args: { id: { type: GraphQLID } },
+			args: { id: { type: GraphQLString } },
 			async resolve(parent, args) {
 				return await serviceController.getSingleService(args)
 			}
