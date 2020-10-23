@@ -15,9 +15,9 @@ exports.getCars = async () => {
 }
 
 // Get all cars, paginated
-exports.getCarsPage = async (page, size) => {
+exports.getCarsPage = async (page, pageSize) => {
   try {
-    const cars = await Car.find().skip(page*size).limit(size)
+    const cars = await Car.find().skip(page*pageSize).limit(pageSize)
     return {
       cars: cars,
       hasMore: true

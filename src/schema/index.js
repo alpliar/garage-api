@@ -108,10 +108,10 @@ const RootQuery = new GraphQLObjectType({
 			type: carsPageType,
 			args: {
 					page: { type: GraphQLInt }, 
-					size: { type: GraphQLInt}
+					pageSize: { type: GraphQLInt}
 				},
 			async resolve(parent, args) {
-				const carsPage = await carController.getCarsPage(args.page, args.size)
+				const carsPage = await carController.getCarsPage(args.page, args.pageSize)
 				return carsPage
 			}
 		},
