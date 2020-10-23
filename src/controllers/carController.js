@@ -20,7 +20,7 @@ exports.getCarsPage = async (page, pageSize) => {
     const cars = await Car.find().skip(page*pageSize).limit(pageSize)
     return {
       cars: cars,
-      hasMore: true
+      hasMore: true /* TODO: calculate hasMore */
     }
   } catch (err) {
     throw boom.boomify(err)
