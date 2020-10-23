@@ -5,6 +5,7 @@ const graphql = require('graphql')
 const {
 	GraphQLSchema,
 	GraphQLObjectType,
+	GraphQLBoolean,
 	GraphQLString,
 	GraphQLInt,
 	GraphQLID,
@@ -38,6 +39,18 @@ const carType = new GraphQLObjectType({
 			async resolve(parent, args) {
 				return await serviceController.getCarsServices({ id: parent._id })
 			}
+		}
+	})
+})
+
+const carsPageType = new GraphQLObjectType({
+	name: 'CarsPage',
+	fields: () => ({
+		cars: {
+			type: new GraphQLList(carType)
+		},
+		hasMore: {
+			type: GraphQLBoolean
 		}
 	})
 })
@@ -80,7 +93,7 @@ const RootQuery = new GraphQLObjectType({
 	fields: {
 		car: {
 			type: carType,
-			args: { id: { type: GraphQLID } },
+			args: { id: { type: GraphQLString } },
 			async resolve(parent, args) {
 				return await carController.getSingleCar(args)
 			}
@@ -91,16 +104,27 @@ const RootQuery = new GraphQLObjectType({
 				return await carController.getCars()
 			}
 		},
+		carsPage: {
+			type: carsPageType,
+			args: {
+					page: { type: GraphQLInt }, 
+					pageSize: { type: GraphQLInt}
+				},
+			async resolve(parent, args) {
+				const carsPage = await carController.getCarsPage(args.page, args.pageSize)
+				return carsPage
+			}
+		},
 		owner: {
 			type: ownerType,
-			args: { id: { type: GraphQLID } },
+			args: { id: { type: GraphQLString } },
 			async resolve(parent, args) {
 				return await ownerController.getSingleOwner(args)
 			}
 		},
 		service: {
 			type: serviceType,
-			args: { id: { type: GraphQLID } },
+			args: { id: { type: GraphQLString } },
 			async resolve(parent, args) {
 				return await serviceController.getSingleService(args)
 			}

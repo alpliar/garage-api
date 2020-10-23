@@ -14,6 +14,19 @@ exports.getCars = async () => {
   }
 }
 
+// Get all cars, paginated
+exports.getCarsPage = async (page, pageSize) => {
+  try {
+    const cars = await Car.find().skip(page*pageSize).limit(pageSize)
+    return {
+      cars: cars,
+      hasMore: true /* TODO: calculate hasMore */
+    }
+  } catch (err) {
+    throw boom.boomify(err)
+  }
+}
+
 // Get single car by ID
 exports.getSingleCar = async req => {
   console.log(req.params === undefined ? req.id : req.params.id)
