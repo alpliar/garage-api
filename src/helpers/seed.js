@@ -41,7 +41,7 @@ const cars = [
 		models: ['Swift', 'Ignis', 'Vitara']
 	},
 	{
-		name: 'Wolkswagen',
+		name: 'Volkswagen',
 		models: ['Golf IV', 'Polo V', 'Arteon', 'Up!', 'Touareg', 'California 6.1']
 	},
 	{
