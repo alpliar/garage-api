@@ -37,7 +37,7 @@ exports.getCarsPage = async (page, pageSize) => {
 
     return {
       cars: cars,
-      hasMore: hasMore /* TODO: calculate hasMore */
+      hasMore: hasMore
     }
   } catch (err) {
     throw boom.boomify(err)
