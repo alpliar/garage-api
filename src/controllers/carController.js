@@ -22,18 +22,18 @@ exports.getCarsPage = async (page, pageSize) => {
     const countCars = await Car.find().countDocuments()
     const hasMore = countCars > (page+1) * pageSize
     
-    console.log(`
-    #######################
+    // console.log(`
+    // #######################
 
-    page: ${page}
-    pageSize: ${pageSize}
-    skip: ${skip}
-    countCars: ${countCars}
-    hasMore: ${hasMore}
+    // page: ${page}
+    // pageSize: ${pageSize}
+    // skip: ${skip}
+    // countCars: ${countCars}
+    // hasMore: ${hasMore}
     
-    #######################
+    // #######################
     
-    `)
+    // `)
 
     return {
       cars: cars,
