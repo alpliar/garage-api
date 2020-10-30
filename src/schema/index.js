@@ -173,6 +173,7 @@ const Mutations = new GraphQLObjectType({
 				brand: { type: new GraphQLNonNull(GraphQLString) },
 				price: { type: GraphQLString },
 				age: { type: GraphQLInt },
+				pictureUrl: { type: GraphQLString },
 				owner_id: { type: GraphQLString }
 			},
 			async resolve(parent, args) {
@@ -188,6 +189,7 @@ const Mutations = new GraphQLObjectType({
 				brand: { type: new GraphQLNonNull(GraphQLString) },
 				price: { type: new GraphQLNonNull(GraphQLString) },
 				age: { type: new GraphQLNonNull(GraphQLInt) },
+				pictureUrl: { type: GraphQLString},
 				owner_id: { type: GraphQLID }
 			},
 			async resolve(parent, args) {
