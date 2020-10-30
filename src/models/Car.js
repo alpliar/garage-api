@@ -7,6 +7,7 @@ const carSchema = new mongoose.Schema({
   brand: String,
   price: String,
   age: Number,
+  pictureUrl: String,
   services: {
     type: Map,
     of: String

@@ -97,12 +97,14 @@ const generateCarData = ownersIds => {
 		const title = faker.random.arrayElement(carObject.models)
 		const price = faker.random.number({ min: 5000, max: 30000 })
 		const age = faker.random.number({ min: 2, max: 10 })
+		const pictureUrl = `https://loremflickr.com/640/360/${carObject.name},${title}?lock=${price}`
 
 		const car = {
 			owner_id,
 			brand: carObject.name,
 			title,
 			price,
+			pictureUrl,
 			age
 		}
 
