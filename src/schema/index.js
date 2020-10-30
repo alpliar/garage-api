@@ -172,7 +172,7 @@ const Mutations = new GraphQLObjectType({
 				brand: { type: new GraphQLNonNull(GraphQLString) },
 				price: { type: GraphQLString },
 				age: { type: GraphQLInt },
-				owner_id: { type: GraphQLID }
+				owner_id: { type: GraphQLString }
 			},
 			async resolve(parent, args) {
 				const data = await carController.addCar(args)
