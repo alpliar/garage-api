@@ -27,3 +27,15 @@ exports.addTodo = async req => {
         throw boom.boomify(err)
     }
 }
+
+exports.updateTodo = async (req) => {
+    try {
+      const id = req.params === undefined ? req.id : req.params.id
+      const updateData = req.params === undefined ? req : {...req.body}
+      const update = await Todo.findByIdAndUpdate(id, updateData, { new: true })
+      return update
+    } catch (err) {
+      throw boom.boomify(err)
+    }
+  }
+  

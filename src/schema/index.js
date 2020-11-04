@@ -193,6 +193,18 @@ const Mutations = new GraphQLObjectType({
 				return data
 			}
 		},
+		editTodo: {
+			type: todoType,
+			args: {
+				id: { type: new GraphQLNonNull(GraphQLString) },
+				text: { type: new GraphQLNonNull(GraphQLString) },
+				done: { type: new GraphQLNonNull(GraphQLBoolean) }
+			},
+			async resolve(parent, args) {
+				const data = await todoController.updateTodo(args)
+				return data
+			}
+		},
 		addCar: {
 			type: carType,
 			args: {
