@@ -17,6 +17,16 @@ const {
 const carController = require('../controllers/carController')
 const ownerController = require('../controllers/ownerController')
 const serviceController = require('../controllers/serviceController')
+const todoController = require('../controllers/todoController')
+
+const todoType = new GraphQLObjectType({
+	name: 'Todo',
+	fields: () => ({
+		_id: { type: GraphQLID },
+		text: { type: GraphQLString },
+		done: { type: GraphQLBoolean }
+	})
+})
 
 // Define Object Types
 const carType = new GraphQLObjectType({
@@ -158,6 +168,12 @@ const RootQuery = new GraphQLObjectType({
 			async resolve(parent, args) {
 				return await serviceController.getSingleService(args)
 			}
+		},
+		todos: {
+			type: new GraphQLList(todoType),
+			async resolve(parent, args) {
+				return await todoController.getTodos()
+			}
 		}
 	}
 })
@@ -166,6 +182,17 @@ const RootQuery = new GraphQLObjectType({
 const Mutations = new GraphQLObjectType({
 	name: 'Mutations',
 	fields: {
+		addTodo: {
+			type: todoType,
+			args: {
+				text: { type: new GraphQLNonNull(GraphQLString)},
+				done: { type: new GraphQLNonNull(GraphQLBoolean) }
+			},
+			async resolve(parent, args) {
+				const data = await todoController.addTodo(args)
+				return data
+			}
+		},
 		addCar: {
 			type: carType,
 			args: {
