@@ -1,5 +1,8 @@
 // Import External Dependancies
 const graphql = require('graphql')
+const { PubSub } = require('apollo-server');
+
+const pubsub = new PubSub();
 
 // Destructure GraphQL functions
 const {
