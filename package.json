@@ -27,7 +27,7 @@
     "fastify-swagger": "^3.4.0",
     "graphql": "^15.3.0",
     "mongoose": "^5.10.9",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.20"
   },
   "devDependencies": {
     "faker": "^5.1.0"
