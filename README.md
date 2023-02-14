@@ -39,3 +39,7 @@ yarn seed
 ```bash
 yarn start
 ```
+
+## API Documentation
+
+This project uses swagger, which is available at /documentation
