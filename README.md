@@ -1,6 +1,6 @@
 # Garage Api
 
-Based on <https://www.freecodecamp.org/news/how-to-build-blazing-fast-rest-apis-with-node-js-mongodb-fastify-and-swagger-114e062db0c9/>
+A graphQL & rest api for handling a garage (cars, owners, ...)
 
 # Installation
 
